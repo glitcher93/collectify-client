@@ -1,0 +1,61 @@
+@use './function' as *;
+
+// Font
+$font: 'Poppins';
+
+// Font-Weights
+$regular: 400;
+$bold: 600;
+
+// Font-Sizes
+$logo: toRem(32);
+$page-header: toRem(24);
+$responsive-page-header: toRem(48);
+$page-sub-header: toRem(18);
+$responsive-page-sub-header: toRem(28);
+$card-about-header: toRem(20);
+$responsive-card-about-header: toRem(24);
+$card-sub-header: toRem(14);
+$responsive-card-sub-header: toRem(16);
+$card-body: toRem(14);
+$responsive-card-body: toRem(16);
+$about-body: toRem(14);
+$responsive-about-body: toRem(16);
+$button-text: toRem(13);
+$responsive-button-text: toRem(14);
+$search-form-text: toRem(14);
+$responsive-search-form-text: toRem(16);
+$labels-form-text: toRem(13);
+$responsive-labels-form-text: toRem(14);
+$footer: toRem(13);
+
+// Padding Sizes
+$component-pad: toRem(16);
+$responsive-component-pad: toRem(24);
+
+
+// Colors
+$general-border: #9E9E9E;
+$form-border: #E1E1E1;
+$linear-gradient: #E1E1E1;
+$header: #000;
+$box-shadow: #000;
+$about-link: #000;
+$header-link: #FFF;
+$card-about-main: #EEE;
+$login-signup-text: #FFF;
+$main-footer: #FFB866;
+$button: #FF951D;
+$alternate-button: #0055B6 ;
+$alternate-button-hover: #66ADFF;
+$button-text-color: #FFF;
+$button-text-hover: #000;
+$header-hover: #FFB866;
+$button-hover: #FFB866;
+$link-color: #FF951D;
+$link-hover: #FFB866;
+$form-focus: #FFB866;
+$error-focus: #D22D2D;
+$footer-text: #3F3F3F;
+$delete-cancel-button: #CE0000;
+$delete-cancel-button-focus: #FF0000;

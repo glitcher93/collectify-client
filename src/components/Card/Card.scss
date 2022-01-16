@@ -1,0 +1,86 @@
+@use '../../styles/partials/function' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+.main {
+
+    &__card{
+        width: 100%;
+        background-color: $card-about-main;
+        height: toRem(500);
+        border-radius: 10px;
+        box-shadow: 0px 2px 5px rgba($box-shadow, 0.1);
+        transform: translateY(-50px);
+        padding: 0 $component-pad;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            width: toRem(10);
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba($color: $button, $alpha: 0.5);
+            border-radius: 10px;
+            opacity: 0.5;
+        }
+
+        @include mobile-large {
+            height: toRem(600);
+            transform: translateY(-100px);
+        }
+
+        @include tablet {
+            height: toRem(700);
+            padding: 0 toRem(36);
+            transform: translateY(-120px);
+        }
+
+        @include desktop {
+            @include wrapper;
+            height: toRem(900);
+            transform: translateY(-250px);
+        }
+    }
+
+    &__button-container{
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: toRem(16);
+        width: 100%;
+
+        @include tablet {
+            padding-top: toRem(24);
+        }
+    }
+
+    &__button {
+        @include button-stack($alternate-button);
+        color: $button-text-color;
+        transition: background-color 0.3s, color 0.3s;
+        margin-bottom: toRem(16);
+
+        &--no-margin {
+            margin-bottom: 0;
+        }
+
+        @include nav-button-margin {
+            margin-bottom: 0;
+        }
+
+        @include tablet {
+            font-size: $responsive-button-text;
+            height: toRem(36);
+        }
+
+        &:hover {
+            background-color: $alternate-button-hover;
+            color: $button-text-hover;
+            cursor: pointer;
+        }
+    }
+    
+}

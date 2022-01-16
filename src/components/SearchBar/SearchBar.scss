@@ -1,0 +1,46 @@
+@use '../../styles/partials/function' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+.search {
+    &__search-bar {
+        display: flex;
+        padding: $component-pad 0;
+        width: 100%;
+    }
+
+    &__input {
+        font-family: $font;
+        font-size: $search-form-text;
+        font-weight: $bold;
+        border: none;
+        border-bottom: 1px solid $general-border;
+        outline: none;
+        background-color: transparent;
+        width: 100%;
+        margin-right: $component-pad;
+        height: toRem(30);
+
+        @include tablet {
+            font-size: $responsive-search-form-text;
+            height: toRem(36);
+        }
+    }
+
+    &__button {
+        @include button-stack($alternate-button);
+        color: $button-text-color;
+        transition: background-color 0.3s, color 0.3s;
+
+        @include tablet {
+            font-size: $responsive-button-text;
+            height: toRem(36);
+        }
+
+        &:hover {
+            background-color: $alternate-button-hover;
+            color: $button-text-hover;
+            cursor: pointer;
+        }
+    }
+}

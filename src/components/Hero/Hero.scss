@@ -1,0 +1,56 @@
+@use '../../styles/partials/function' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+.hero {
+    background-image: linear-gradient(rgba($linear-gradient, 0.6), rgba($linear-gradient, 0.6)), url('../../assets/images/vinyl-store.jpg');
+    aspect-ratio: 16/9;
+    width: 100%;
+    background-size: cover;
+
+    @include mobile-large {
+        height: 50vh;
+    }
+
+    @include tablet {
+        height: 70vh;
+    }
+
+    @include desktop {
+        height: 100vh;
+    }
+
+    &__wrapper {
+        display: flex;
+        padding: 0 toRem(16);
+
+        @include tablet {
+            padding: 0 toRem(36);
+        }
+
+        @include desktop {
+            @include wrapper;
+            padding: 0;
+        }
+    }
+
+    &__title {
+        font-size: $page-header;
+        font-weight: $bold;
+        padding: toRem(36) 0 toRem(24);
+
+        @include tablet {
+            font-size: $responsive-page-header;
+            padding: toRem(48) 0 toRem(36);
+        }
+    }
+
+    &__paragraph {
+        font-size: $page-sub-header;
+        font-weight: $bold;
+
+        @include tablet {
+            font-size: $responsive-page-sub-header;
+        }
+    }
+}

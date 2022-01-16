@@ -1,0 +1,176 @@
+@use '../../styles/partials/function' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+.add-album {
+    &__title {
+        @include card-about-header-stack;
+
+        @include tablet {
+            font-size: $responsive-card-about-header;
+            padding: toRem(36) 0 toRem(24);
+        }
+    }
+
+    &__paragraph {
+        font-size: $card-body;
+        padding: toRem(16) 0;
+        font-weight: $bold;
+
+        &:nth-of-type(2) {
+            padding: 0 0 toRem(16);
+            font-weight: normal;
+        }
+
+        @include tablet {
+            font-size: $responsive-card-body;
+            padding: toRem(24) 0;
+        }
+    }
+}
+
+.add-album-form {
+    display: flex;
+    flex-direction: column;
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: $component-pad;
+    }
+
+    &__label {
+        @include label-stack;
+
+        @include tablet {
+            font-size: $responsive-labels-form-text;
+        }
+    }
+
+    &__file {
+        font-family: $font;
+        font-size: $labels-form-text;
+
+        @include tablet {
+            font-size: $responsive-labels-form-text;
+        }
+
+        &::-webkit-file-upload-button {
+            @include button-stack($button);
+            transition: background-color 0.3s;
+
+            @include tablet {
+                height: toRem(36);
+                font-size: $responsive-button-text;
+            }
+
+            &:hover {
+                background-color: $button-hover;
+            }
+        }
+    }
+
+    &__required-message {
+        @include label-stack;
+        padding-top: toRem(6);
+        font-weight: normal;
+        color: $error-focus;
+
+        @include tablet {
+            font-size: $responsive-labels-form-text
+        }
+    }
+
+    &__input {
+        @include form-input-stack;
+        width: toRem(200);
+
+        @include tablet {
+            font-size: toRem(14);
+        }
+
+        &:focus {
+            border: 2px solid $form-focus;
+        }
+
+        &--invalid {
+            border: 2px solid $error-focus;
+
+            &:focus {
+                border: 2px solid $error-focus;
+            }
+        }
+
+        &--number {
+            width: toRem(150);
+        }
+    }
+
+    &__select {
+        @include select-stack;
+        width: toRem(150);
+
+        @include tablet {
+            font-size: $responsive-labels-form-text;
+        }
+
+        &:focus {
+            border: 2px solid $form-focus;
+        }
+
+        &--invalid {
+            border: 2px solid $error-focus;
+
+            &:focus {
+                border: 2px solid $error-focus;
+            }
+        }
+    }
+
+    &__textarea {
+        @include textarea-stack;
+
+        @include tablet {
+            font-size: $responsive-labels-form-text;
+        }
+
+        &:focus {
+            border: 2px solid $form-focus;
+        }
+
+        &--invalid {
+            border: 2px solid $error-focus;
+
+            &:focus {
+                border: 2px solid $error-focus;
+            }
+        }
+    }
+
+    &__button-container {
+        padding-bottom: $component-pad;
+
+        @include mobile-large {
+            align-self: flex-end;
+        }
+    }
+
+    &__button {
+        @include button-stack($button);
+        width: 100%;
+        transition: background-color 0.3s;
+
+        @include mobile-large {
+            width: toRem(150);
+        }
+
+        @include tablet {
+            font-size: $responsive-button-text;
+            height: toRem(36);
+        }
+
+        &:hover {
+            background-color: $button-hover;
+        }
+    }
+}

@@ -1,0 +1,128 @@
+@use '../../styles/partials/function' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+.about-main {
+    background-color: $card-about-main;
+    height: toRem(900);
+}
+
+.about {
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        
+        padding: 0 $component-pad;
+
+        @include tablet {
+            flex-direction: row;
+            padding: 0 toRem(36);
+        }
+
+        @include desktop {
+            padding: 0;
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+    }
+
+    &__wrapper-two {
+        padding: 0 $component-pad;
+
+        @include tablet {
+            padding: 0 toRem(36);
+        }
+
+        @include desktop {
+            padding: 0;
+            max-width: 1024px;
+            margin: 0 auto;
+        }
+    }
+
+    &__img-container {
+        align-self: center;
+        padding: $component-pad 0 0;
+
+        @include tablet {
+            padding: toRem(36) 0 0;
+            align-self: flex-start;
+        }
+    }
+
+    &__img {
+        width: toRem(250);
+        height: toRem(250);
+        object-fit: cover;
+    }
+
+    &__text-container {
+        @include tablet {
+            padding-left: toRem(24);
+        }
+    }
+
+    &__title {
+        @include card-about-header-stack;
+
+        @include tablet {
+            font-size: $responsive-card-about-header;
+            padding: toRem(36) 0 toRem(24);
+        }
+    }
+
+    &__paragraph {
+        font-size: $about-body;
+        line-height: 1.5;
+        padding: $component-pad 0 0;
+
+        &:last-child {
+            padding-bottom: $component-pad;
+        }
+
+        @include tablet {
+            font-size: $responsive-about-body;
+        }
+    }
+
+    &__link-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        padding: toRem(16) 0 0;
+
+        &--link {
+            font-size: $about-body;
+            text-decoration: none;
+            color: $about-link;
+            transition: color 0.3s;
+    
+            &:hover {
+                color: $link-hover;
+            }
+    
+            @include tablet {
+                font-size: $responsive-about-body;
+            }
+    
+            &:last-child {
+                padding-bottom: toRem(16);
+            }
+        }
+
+        &--paragraph {
+            font-size: $about-body;
+            padding-left: toRem(6);
+
+            @include tablet {
+                font-size: $responsive-about-body;
+                padding-left: toRem(12);
+            }
+        }
+    }
+}

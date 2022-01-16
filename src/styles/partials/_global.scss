@@ -1,0 +1,9 @@
+@use './variables' as *;
+
+body {
+    font-family: $font;
+}
+
+ul {
+    list-style: none;
+}

@@ -1,0 +1,33 @@
+@use '../../styles/partials/function' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+@keyframes fade-in {
+    from { 
+        opacity: 0; 
+        transform: translateY(50px);
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0px);
+    }
+}
+
+.wishlist {
+    
+    &__list-container {
+        width: 100%;
+    }
+    
+    &__empty-list {
+        font-size: $card-body;
+        padding-top: toRem(16);
+        font-weight: $bold;
+        opacity: 0.5;
+
+        @include tablet {
+            font-size: $responsive-card-body;
+            padding-top: toRem(24);
+        }
+    }
+}

@@ -1,0 +1,118 @@
+@use '../../styles/partials/function' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+
+.login {
+    background-color: $main-footer;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        background-color: #000;
+        border-radius: 10px;
+        width: toRem(288);
+        height: toRem(350);
+    }
+
+    &__title-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__title {
+        color: $login-signup-text;
+        font-size: $logo;
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__paragraph {
+        color: $login-signup-text;
+        font-size: $card-body;
+        padding-bottom: toRem(6);
+
+        @include tablet {
+            font-size: $responsive-card-body;
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+        font-size: $card-body;
+        color: $link-color;
+        transition: color 0.3s;
+
+        &:hover {
+            color: $link-hover;
+        }
+
+        @include tablet {
+            font-size: $responsive-card-body;
+        }
+    }
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &__form-group {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: $component-pad;
+    }
+
+    &__label {
+        @include label-stack;
+        color: $login-signup-text;
+
+        @include tablet {
+            font-size: $responsive-labels-form-text;
+        }
+    }
+
+    &__input {
+        @include form-input-stack;
+        
+
+        &:focus {
+            border: 2px solid $form-focus;
+        }
+
+        &--invalid {
+            border: 2px solid $error-focus;
+
+            &:focus {
+                border: 2px solid $error-focus;
+            }
+        }
+    }
+
+    &__button {
+        @include button-stack($button);
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: $button-hover;
+        }
+
+        @include tablet {
+            height: toRem(36);
+            font-size: $responsive-button-text;
+        }
+    }
+}

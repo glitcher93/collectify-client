@@ -1,0 +1,136 @@
+@use '../../styles/partials/function' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+.landing {
+
+    &__section {
+        padding: toRem(36) 0;
+        justify-content: center;
+        text-align: center;
+        height: 50vh;
+        width: 100%;
+
+        @include tablet {
+            padding: toRem(48) 0;
+            justify-content: flex-start;
+            height: 100vh;
+        }
+
+        @include desktop {
+            height: 80vh;
+        }
+    }
+
+    &__wrapper {
+        height: 100%;
+        width: 100%;
+        padding: 0 $component-pad;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @include tablet {
+            padding: 0 toRem(36);
+            justify-content: space-between;
+        }
+
+        @include desktop {
+            @include wrapper;
+            padding: 0;
+        }
+
+        &--special {
+            @include tablet {
+                justify-content: center;
+            }
+        }
+    }
+
+    &__image-container {
+        display: none;
+
+        @include tablet {
+            display: inline-block;
+        }
+    }
+
+    &__image {
+        width: toRem(300);
+    }
+
+    &__text-container {
+        @include tablet {
+            width: 60%;
+        }   
+        
+
+        &--special {
+            @include tablet {
+                width: auto;
+            }
+            
+        }
+    }
+
+    &__title {
+        font-size: $page-header;
+        font-weight: $bold;
+        padding: 0 0 toRem(24);
+
+        @include tablet {
+            font-size: $responsive-page-header;
+            padding: 0 0 toRem(36);
+        }
+    }
+
+    &__paragraph {
+        font-size: $page-sub-header;
+        font-weight: $bold;
+        padding-bottom: $component-pad;
+
+        @include tablet {
+            font-size: $responsive-page-sub-header;
+        }
+    }
+
+    &__info {
+        background-image: linear-gradient(rgba($linear-gradient, 0.6), rgba($linear-gradient, 0.6)), url('../../assets/images/vinyl-store.jpg');
+        background-position: center;
+        background-size: cover;
+
+        @include tablet {
+            background-position: top;
+        }
+    }
+
+    &__search {
+        background-color: $main-footer;
+    }
+
+    &__get-started {
+        background-color: $header;
+        color: $login-signup-text;
+    }
+
+    &__button {
+        font-family: $font;
+        font-size: toRem(18);
+        font-weight: $bold;
+        height: toRem(30);
+        border-radius: 10px;
+        border: none;
+        background-color: $button;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: $button-hover;
+        }
+
+        @include tablet {
+            font-size: toRem(24);
+            height: toRem(36);
+        }
+    }
+}

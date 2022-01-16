@@ -1,0 +1,91 @@
+@use '../../styles/partials/function' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+@keyframes fade-in {
+    from { 
+        opacity: 0; 
+        transform: translateY(50px);
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0px);
+    }
+}
+
+.search-results {
+    
+    &__container {
+        width: 100%;
+    }
+    
+}
+
+.search-result {
+    @include list-item-stack;
+
+    @include mobile-large {
+        flex-direction: row;
+    }
+    
+    @include tablet {
+        padding: $responsive-component-pad;
+        width: 100%;
+    }
+
+    &__container {
+        @include mobile-large {
+            padding: 0 toRem(12);
+            width: 100%;
+        }
+
+        @include tablet {
+            display: flex;
+            flex-direction: column;
+            padding: 0 $responsive-component-pad;
+        }
+    }
+    
+    &__img-container {
+        padding-bottom: $component-pad;
+    }
+
+    &__img {
+        width: toRem(150);
+        height: toRem(150);
+        object-fit: cover;
+
+        @include tablet {
+            width: toRem(200);
+            height: toRem(200);
+        }
+    }
+    
+    &__info {
+        display: flex;
+        padding-bottom: toRem(6);
+
+        @include tablet {
+            padding-bottom: toRem(14);
+        }
+    }
+
+    &__title {
+        font-size: $card-body;
+        font-weight: $bold;
+        padding-right: toRem(6);
+
+        @include tablet {
+            font-size: $responsive-card-body;
+        }
+    }
+
+    &__paragraph {
+        font-size: $card-body;
+
+        @include tablet {
+            font-size: $responsive-card-body;
+        }
+    }
+}
+

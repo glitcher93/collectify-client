@@ -1,0 +1,14 @@
+@use '../../styles/partials/function' as *;
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+.collection {
+    &__title {
+        @include card-about-header-stack;
+
+        @include tablet {
+            font-size: $responsive-card-about-header;
+            padding: toRem(36) 0 toRem(24);
+        }
+    }
+}

@@ -1,0 +1,95 @@
+@use './variables' as *;
+@use './function' as *;
+
+
+@mixin nav-button-margin {
+    @media (min-width: 399px) {
+        @content;
+    }
+}
+
+@mixin mobile-large {
+    @media (min-width: 500px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: 768px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: 1280px) {
+        @content;
+    }
+}
+
+@mixin wrapper {
+    max-width: 1024px;
+    margin: 0 auto;
+}
+
+@mixin button-stack($bg-color) {
+    font-family: $font;
+    font-size: $button-text;
+    margin-right: toRem(6);
+    height: toRem(30);
+    border-radius: 10px;
+    border: none;
+    background-color: $bg-color;
+}
+
+@mixin label-stack {
+    font-size: $labels-form-text;
+    font-weight: $bold;
+    padding-bottom: toRem(4);
+}
+
+@mixin select-stack {
+    font-family: $font;
+    font-size: $labels-form-text;
+    height: toRem(30);
+    border: 2px solid $form-border;
+    background-color: #FFF;
+    border-radius: 10px;
+    outline: none;
+    padding: 0 toRem(4);
+}
+
+@mixin form-input-stack {
+    font-family: $font;
+    font-size: $labels-form-text;
+    height: toRem(30);
+    border: 2px solid $form-border;
+    outline: none;
+    padding: 0 toRem(4);
+    border-radius: 10px;
+}
+
+@mixin textarea-stack {
+    resize: none;
+    font-family: $font;
+    font-size: $labels-form-text;
+    height: toRem(100);
+    border: 2px solid $form-border;
+    outline: none;
+    padding: toRem(4) toRem(4);
+    border-radius: 10px;
+}
+
+@mixin list-item-stack {
+    display: flex;
+    flex-direction: column;
+    padding: $component-pad;
+    border-bottom: 1px solid $general-border;
+    width: 100%;
+}
+
+@mixin card-about-header-stack {
+    font-size: $card-about-header;
+    font-weight: $bold;
+    padding: toRem(24) 0 toRem(16);
+    border-bottom: 1px solid $general-border;
+}
