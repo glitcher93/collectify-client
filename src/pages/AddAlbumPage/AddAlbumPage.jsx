@@ -155,9 +155,10 @@ function AddAlbumPage() {
         if (!image.value || !albumTitle.value || !artist.value || !releaseDate.value || !numTracks.value || !medium.value || !numCopies.value || !description.value ) {
             return;
         }
+        const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         const fd = new FormData(formRef.current);
         axios
-            .post(`http://localhost:8080/collection/add-new-album`, fd, {
+            .post(`${serverURL}/collection/add-new-album`, fd, {
                 headers: {
                     authorization: `Bearer ${token}`
                 }

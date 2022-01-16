@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
-import './SearchResultForm.scss'
+import './SearchResultForm.scss';
 
 
 function SearchResultForm(props) {
@@ -78,8 +78,9 @@ function SearchResultForm(props) {
             return;
         }
         const token = sessionStorage.getItem("authorization").split(" ")[1];
+        const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
-            .post('http://localhost:8080/collection', {
+            .post(`${serverURL}/collection`, {
                 image: props.image,
                 albumTitle: props.albumTitle,
                 artist: props.artist,
@@ -136,8 +137,9 @@ function SearchResultForm(props) {
             return;
         }
         const token = sessionStorage.getItem("authorization").split(" ")[1];
+        const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
-            .post('http://localhost:8080/wishlist', {
+            .post(`${serverURL}/wishlist`, {
                 image: props.image,
                 albumTitle: props.albumTitle,
                 artist: props.artist,

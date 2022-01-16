@@ -111,8 +111,9 @@ function SignUpPage() {
         if (!firstName.value || !lastName.value || !username.value || !password.value || !confirmPassword.value) {
             return;
         }
+        const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
-            .post("http://localhost:8080/signup", {
+            .post(`${serverURL}/signup`, {
                 firstName: event.target.firstName.value,
                 lastName: event.target.lastName.value,
                 username: event.target.username.value,

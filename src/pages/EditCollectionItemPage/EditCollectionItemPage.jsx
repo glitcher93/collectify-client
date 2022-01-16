@@ -23,8 +23,9 @@ function EditCollectionItemPage(props) {
 
     useEffect(() => {
         const token = sessionStorage.getItem("authorization").split(' ')[1];
+        const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
-            .get(`http://localhost:8080/collection/${props.match.params.itemId}`, {
+            .get(`${serverURL}/collection/${props.match.params.itemId}`, {
                 headers: {
                     authorization: `Bearer ${token}`
                 }
@@ -98,8 +99,9 @@ function EditCollectionItemPage(props) {
             return;
         }
         const token = sessionStorage.getItem("authorization").split(' ')[1];
+        const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
-            .put(`http://localhost:8080/collection/${props.match.params.itemId}/update`, {
+            .put(`${serverURL}/collection/${props.match.params.itemId}/update`, {
                 medium: medium.value,
                 numCopies: Number(numCopies.value),
                 description: description.value

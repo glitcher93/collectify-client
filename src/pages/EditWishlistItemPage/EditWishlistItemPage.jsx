@@ -23,8 +23,9 @@ function EditWishlistItemPage(props) {
 
     useEffect(() => {
         const token = sessionStorage.getItem("authorization").split(' ')[1];
+        const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
-            .get(`http://localhost:8080/wishlist/${props.match.params.itemId}`, {
+            .get(`${serverURL}/wishlist/${props.match.params.itemId}`, {
                 headers: {
                     authorization: `Bearer ${token}`
                 }

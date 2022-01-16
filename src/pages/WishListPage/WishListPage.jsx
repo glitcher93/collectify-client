@@ -14,8 +14,9 @@ function WishListPage() {
         const token = sessionStorage.getItem("authorization").split(" ")[1];
         const decodedUser = jwt_decode(token);
         setUser(decodedUser);
+        const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
-            .get(`http://localhost:8080/wishlist`, {
+            .get(`${serverURL}/wishlist`, {
                 headers: {
                     authorization: `Bearer ${token}`
                 }
@@ -28,15 +29,16 @@ function WishListPage() {
 
     const handleOnClickDelete = (id) => {
         const token = sessionStorage.getItem("authorization").split(" ")[1];
+        const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
-            .delete(`http://localhost:8080/wishlist/${id}`, {
+            .delete(`${serverURL}/wishlist/${id}`, {
                 headers: {
                     authorization: `Bearer ${token}`
                 }
             })
             .then(() => {
                 axios
-                    .get(`http://localhost:8080/wishlist`, {
+                    .get(`${serverURL}/wishlist`, {
                         headers: {
                             authorization: `Bearer ${token}`
                         }
@@ -51,8 +53,9 @@ function WishListPage() {
 
     const handleOnClickCollection = (album, id) => {
         const token = sessionStorage.getItem("authorization").split(" ")[1];
+        const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
-            .post(`http://localhost:8080/collection`, {
+            .post(`${serverURL}/collection`, {
                 image: album.image,
                 albumTitle: album.albumTitle,
                 artist: album.artist,
@@ -69,14 +72,14 @@ function WishListPage() {
             })
             .then(() => {
                 axios
-                    .delete(`http://localhost:8080/wishlist/${id}`, {
+                    .delete(`${serverURL}/wishlist/${id}`, {
                         headers: {
                             authorization: `Bearer ${token}`
                         }
                     })
                     .then((response) => {
                         axios
-                            .get(`http://localhost:8080/wishlist`, {
+                            .get(`${serverURL}/wishlist`, {
                                 headers: {
                                     authorization: `Bearer ${token}`
                                 }

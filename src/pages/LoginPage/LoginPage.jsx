@@ -56,8 +56,9 @@ function LoginPage() {
         if (!username.value || !password.value) {
             return;
         }
+        const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
-            .post("http://localhost:8080/login", {
+            .post(`${serverURL}/login`, {
                 username: event.target.username.value,
                 password: event.target.password.value
             })

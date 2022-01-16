@@ -8,10 +8,13 @@ function CollectionPage() {
     
     const [collection, setCollection] = useState([]);
 
+    
+
     useEffect(() => {
         const token = sessionStorage.getItem("authorization").split(" ")[1];
+        const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
-            .get('http://localhost:8080/collection', {
+            .get(`${serverURL}/collection`, {
                 headers: {
                     authorization: `Bearer ${token}`
                 }
@@ -24,15 +27,16 @@ function CollectionPage() {
 
     const handleOnClickDelete = (id) => {
         const token = sessionStorage.getItem("authorization").split(" ")[1];
+        const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
-            .delete(`http://localhost:8080/collection/${id}`, {
+            .delete(`${serverURL}/collection/${id}`, {
                 headers: {
                     authorization: `Bearer ${token}`
                 }
             })
             .then(() => {
                 axios
-                    .get(`http://localhost:8080/collection`, {
+                    .get(`${serverURL}/collection`, {
                         headers: {
                             authorization: `Bearer ${token}`
                         }
