@@ -119,8 +119,12 @@ function SignUpPage() {
                 username: event.target.username.value,
                 password: event.target.password.value
             })
-            .catch(err => console.log(err));
-        setIsSubmitted(true);
+            .then(() => {
+                alert("User successfully signed up");
+                setIsSubmitted(true)
+            })
+            .catch(() => alert("Username already exists, please choose another username"));
+        
     }
 
     if (isSubmitted) {
