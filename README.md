@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# Collectify
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hello, and welcome to my BrainStation Capstone Project, Collectify.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+This application allows a user to document their own physical music collection (Vinyl, CD, Cassette) by using the Spotify API to search for albums and submitting a form with details of the specific album they own. The user can also add albums to a wishlist by searching for albums and submitting the same form by clicking a different button. The user can also edit details of the album they own, delete items from their collection/wishlist, and also add an album from their wishlist into their collection once they have acquired it.
 
-### `npm start`
+## Application Site
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This app is deployed on Netlify for the front-end and Heroku for the back-end
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+https://collectify.netlify.app
 
-### `npm test`
+### Important Note
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+This application is currently in Spotify's application developer mode. If you would like to test out this application you can e-mail me at:
 
-### `npm run build`
+nigeljdsouza@gmail.com
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tech Stack
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Front-End:
+- React
+- SASS
+- React Router DOM
+- FortAwesome/FontAwesome
+- Axios
+- JWT Decode
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Back-End:
 
-### `npm run eject`
+- Node.js
+- Express
+- MySQL
+- Cors
+- Dotenv
+- Knex
+- Nodemon
+- JWT
+- Bcrypt
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Environment Variables
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### client/.env
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- REACT_APP_CLIENT_ID: contains client ID for use in the Spotify module in the utils folder
+- REACT_APP_REDIRECT_URI: contains the redirect URI for use in the Spotify module in the utils folder
+- REACT_APP_SERVER_URL: contains the API URL that retrieves information from the server
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+#### server/.env
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- PORT: contains the port number in which the server is running on
+- JAWSDB_URL: contains the URL to connect to the provisioned MYSQL database for this project
+- SERVER_URL: contains the API URL that retrieves information from the server
