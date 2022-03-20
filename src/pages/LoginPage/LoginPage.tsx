@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, FormEvent } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import { Redirect, Link } from "react-router-dom";
 import './LoginPage.scss';
 import album from '../../assets/icons/album-white-36.svg';
@@ -17,9 +17,9 @@ function LoginPage() {
         value: "",
         required: false
     });
-    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
 
-    const handleOnChange = (event: { target: { name: string; value: string; }; }) => {
+    const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         switch (name) {
             case "username":

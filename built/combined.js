@@ -441,7 +441,6 @@ define("utils/Spotify", ["require", "exports", "axios"], function (require, expo
                 }
             })
                 .then((response) => {
-                console.log(response);
                 if (!response.data.albums) {
                     return [];
                 }
@@ -453,7 +452,8 @@ define("utils/Spotify", ["require", "exports", "axios"], function (require, expo
                     release_date: album.release_date,
                     num_tracks: album.total_tracks
                 }));
-            });
+            })
+                .catch(err => console.log(err));
         }
     };
     exports.default = Spotify;

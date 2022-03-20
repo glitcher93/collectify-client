@@ -30,7 +30,7 @@ function SearchResultForm(props: FormProps) {
         }
     }, [])
 
-    const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
+    const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement| HTMLSelectElement |HTMLInputElement>) => {
         const { name, value } = event.target;
         switch (name) {
             case "medium":

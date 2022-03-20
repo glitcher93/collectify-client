@@ -1,11 +1,11 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import './EditWishlistItemPage.scss';
 import arrow from '../../assets/icons/arrow-back-black.svg';
-import { Album } from '../../utils/interfaces';
+import { Album, RouterProps } from '../../utils/interfaces';
 
-function EditWishlistItemPage(props: { match: { params: { itemId: any; }; }; }) {
+function EditWishlistItemPage(props: RouterProps) {
 
     const [wishlistItem, setWishlistItem] = useState<Album>({} as Album);
     const [medium, setMedium] = useState({
@@ -50,7 +50,7 @@ function EditWishlistItemPage(props: { match: { params: { itemId: any; }; }; }) 
             // eslint-disable-next-line
     }, [])
 
-    const handleOnChange = (event: { target: { name: any; value: any; }; }) => {
+    const handleOnChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = event.target;
         switch (name) {
             case "medium":
@@ -76,7 +76,7 @@ function EditWishlistItemPage(props: { match: { params: { itemId: any; }; }; }) 
         }
     }
 
-    const handleOnSubmit = (event: { preventDefault: () => void; }) => {
+    const handleOnSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (!medium.value) {
             setMedium({

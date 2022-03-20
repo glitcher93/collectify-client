@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
 import { Redirect, Link } from "react-router-dom";
 import './SignupPage.scss';
 import album from '../../assets/icons/album-white-36.svg';
@@ -31,7 +31,7 @@ function SignUpPage() {
     })
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const handleOnChange = (event: { target: { name: any; value: any; }; }) => {
+    const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         switch (name) {
             case "firstName":

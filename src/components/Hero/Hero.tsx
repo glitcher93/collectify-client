@@ -10,7 +10,7 @@ function Hero() {
     const [user, setUser] = useState<UserProfile>({} as UserProfile)
 
     useEffect(() => {
-        const token: string = sessionStorage.getItem("authorization")!.split(' ')[1];
+        const token = sessionStorage.getItem("authorization")!.split(' ')[1];
         const decodedUser: UserProfile = jwt_decode(token);
         setUser(decodedUser);
     }, [])   

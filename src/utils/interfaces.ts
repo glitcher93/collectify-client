@@ -56,11 +56,27 @@ export interface SearchReturn {
     num_tracks: number
 }
 
-export interface Target {
-    username: {value: string}
-    password: {value: string}
-    firstName?: {value: string}
-    lastName?: {value: string}
+export interface Collection {
+    collection: Album[]
+    handleOnClickDelete: (id: number) => void
+}
+
+export interface OnSearch {
+    onSearch: (arg: string) => void
+}
+
+export interface WishListProps {
+    wishlist: Album[]
+    handleOnClickDelete: (id: number) => void
+    handleOnClickCollection?: (album: Album, id: number) => void
+}
+
+export interface RouterProps {
+    match: {
+        params: {
+            itemId: number
+        }
+    }
 }
 
 export interface FormProps {

@@ -1,11 +1,6 @@
 import './CollectionList.scss';
 import AlbumItem from '../AlbumItem';
-import { Album } from '../../utils/interfaces';
-
-interface Collection {
-    collection: Album[]
-    handleOnClickDelete: (id: number) => void
-}
+import { Album, Collection } from '../../utils/interfaces';
 
 function CollectionList(props: Collection) {
 

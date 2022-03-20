@@ -1,12 +1,6 @@
 import './WishList.scss';
 import AlbumItem from '../AlbumItem';
-import { Album } from '../../utils/interfaces';
-
-interface WishListProps {
-    wishlist: Album[]
-    handleOnClickDelete: (id: number) => void
-    handleOnClickCollection?: (album: Album, id: number) => void
-}
+import { Album, WishListProps } from '../../utils/interfaces';
 
 function WishList(props: WishListProps) {
     return (
