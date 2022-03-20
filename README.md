@@ -6,6 +6,10 @@ Hello, and welcome to my BrainStation Capstone Project, Collectify.
 
 This application allows a user to document their own physical music collection (Vinyl, CD, Cassette) by using the Spotify API to search for albums and submitting a form with details of the specific album they own. The user can also add albums to a wishlist by searching for albums and submitting the same form by clicking a different button. The user can also edit details of the album they own, delete items from their collection/wishlist, and also add an album from their wishlist into their collection once they have acquired it.
 
+## Updates
+- Jan 2, 2022: Added Image Uploading for newly created Add New Album Page. Users can now add an album if it does not exist in Spotify's database.
+- Mar 19, 2022: Converted entire project to TypeScript!
+
 ## Application Site
 
 This app is deployed on Netlify for the front-end and Heroku for the back-end
@@ -22,6 +26,7 @@ nigeljdsouza@gmail.com
 
 ### Front-End:
 - React
+- TypeScript
 - SASS
 - React Router DOM
 - FortAwesome/FontAwesome
