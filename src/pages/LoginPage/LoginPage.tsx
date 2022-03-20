@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import { Redirect, Link } from "react-router-dom";
 import './LoginPage.scss';
 import album from '../../assets/icons/album-white-36.svg';
@@ -19,7 +19,7 @@ function LoginPage() {
     });
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-    const handleOnChange = (event) => {
+    const handleOnChange = (event: { target: { name: string; value: string; }; }) => {
         const { name, value } = event.target;
         switch (name) {
             case "username":
@@ -39,7 +39,7 @@ function LoginPage() {
         }
     }
 
-    const handleOnSubmit = (event) => {
+    const handleOnSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (!username.value) {
             setUsername({
@@ -59,8 +59,8 @@ function LoginPage() {
         const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
             .post(`${serverURL}/login`, {
-                username: event.target.username.value,
-                password: event.target.password.value
+                username: username.value,
+                password: password.value
             })
             .then((response) => {
                 if (response.status === 200) {

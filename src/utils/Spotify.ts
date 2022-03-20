@@ -1,9 +1,10 @@
 import axios from 'axios';
+import { SpotifyReturn } from './interfaces';
 
 const clientId = process.env.REACT_APP_CLIENT_ID;
 const redirectUri = process.env.REACT_APP_REDIRECT_URI;
 
-let accessToken;
+let accessToken: string;
 
 const Spotify = {
     getAccessToken() {
@@ -12,22 +13,22 @@ const Spotify = {
         }
 
         // check for access token match
-        const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
-        const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
+        const accessTokenMatch: RegExpMatchArray | null = window.location.href.match(/access_token=([^&]*)/);
+        const expiresInMatch: RegExpMatchArray | null = window.location.href.match(/expires_in=([^&]*)/);
 
         if (accessTokenMatch && expiresInMatch) {
             accessToken = accessTokenMatch[1];
-            const expiresIn = Number(expiresInMatch[1]);
+            const expiresIn: number = Number(expiresInMatch[1]);
             window.setTimeout(() => accessToken = '', expiresIn * 1000);
-            window.history.pushState('Access Token', null, '/');
+            window.history.pushState('Access Token', '', '/');
             return accessToken;
         } else {
-            const accessUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`
-            window.location = accessUrl;
+            const accessUrl: string = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`
+            window.location = accessUrl as unknown as Location;
         }
     },
 
-    search(term) {
+    search(term: string) {
         const accessToken = Spotify.getAccessToken();
         return axios
             .get(`https://api.spotify.com/v1/search?type=album&q=${term}`, {
@@ -40,7 +41,7 @@ const Spotify = {
                 if (!response.data.albums) {
                     return [];
                 }
-                return response.data.albums.items.map(album => ({
+                return response.data.albums.items.map((album: SpotifyReturn)  => ({
                     id: album.id,
                     image: album.images[1].url,
                     albumTitle: album.name,

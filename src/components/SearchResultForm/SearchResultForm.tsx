@@ -1,34 +1,36 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent, MouseEvent } from 'react';
 import jwt_decode from 'jwt-decode';
 import './SearchResultForm.scss';
+import { UserProfile, FormProps } from '../../utils/interfaces';
 
 
-function SearchResultForm(props) {
+
+function SearchResultForm(props: FormProps) {
 
     const [medium, setMedium] = useState({
         value: "",
         required: false
     });
     const [numCopies, setNumCopies] = useState({
-        value: parseInt(0),
+        value: 0,
         required: false
     });
     const [description, setDescription] = useState({
         value: "",
         required: false
     });
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState<UserProfile>({} as UserProfile);
 
     useEffect(() => {
         if (sessionStorage.getItem("authorization")) {
-            const token = sessionStorage.getItem("authorization").split(" ")[1];
-            const decodedUser = jwt_decode(token);
+            const token = sessionStorage.getItem("authorization")!.split(" ")[1];
+            const decodedUser: UserProfile = jwt_decode(token);
             setUser(decodedUser);
         }
     }, [])
 
-    const handleOnChange = (event) => {
+    const handleOnChange = (event: ChangeEvent<HTMLTextAreaElement> | ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         switch (name) {
             case "medium":
@@ -54,7 +56,7 @@ function SearchResultForm(props) {
         }
     }
 
-    const addToCollection = (event) => {
+    const addToCollection = (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
         event.preventDefault();
         if (!medium.value) {
             setMedium({
@@ -77,7 +79,7 @@ function SearchResultForm(props) {
         if (!medium.value || !numCopies.value || !description.value) {
             return;
         }
-        const token = sessionStorage.getItem("authorization").split(" ")[1];
+        const token = sessionStorage.getItem("authorization")!.split(" ")[1];
         const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
             .post(`${serverURL}/collection`, {
@@ -102,7 +104,7 @@ function SearchResultForm(props) {
                 });
                 setNumCopies({
                     ...numCopies,
-                    value: parseInt(0)
+                    value: 0
                 })
                 setDescription({
                     ...description,
@@ -113,7 +115,7 @@ function SearchResultForm(props) {
         alert("Album added to collection!")
     }
     
-    const addToWishList = (event) => {
+    const addToWishList = (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => {
         event.preventDefault();
         if (!medium.value) {
             setMedium({
@@ -136,7 +138,7 @@ function SearchResultForm(props) {
         if (!medium.value || !numCopies.value || !description.value) {
             return;
         }
-        const token = sessionStorage.getItem("authorization").split(" ")[1];
+        const token = sessionStorage.getItem("authorization")!.split(" ")[1];
         const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
             .post(`${serverURL}/wishlist`, {
@@ -160,7 +162,7 @@ function SearchResultForm(props) {
                 });
                 setNumCopies({
                     ...numCopies,
-                    value: parseInt(0)
+                    value: 0
                 })
                 setDescription({
                     ...description,
@@ -204,8 +206,9 @@ function SearchResultForm(props) {
                     type="number"
                     name="numCopies" 
                     id="numCopies" 
-                    value={numCopies.value} 
-                    onChange={handleOnChange}
+                    value={numCopies.value}
+                    min={1} 
+                    onChange={(event) => handleOnChange(event)}
                     className={`search-result-form__input ${numCopies.required ? "search-result-form__input--invalid" : ""}`}
                     />
                 </div>

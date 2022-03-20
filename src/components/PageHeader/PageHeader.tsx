@@ -7,7 +7,7 @@ import album from '../../assets/icons/album-white-36.svg';
 function PageHeader() {
     const { pathname } = useLocation();
 
-    const logout = (event) => {
+    const logout = () => {
         sessionStorage.removeItem("authorization");
     }
 

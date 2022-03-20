@@ -1,19 +1,21 @@
 import './AddAlbumPage.scss';
-import { useRef, useState } from 'react';
+import { ChangeEvent, useRef, useState, FormEvent } from 'react';
 import jwt_decode from "jwt-decode";
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import { UserProfile } from '../../utils/interfaces';
+
 
 function AddAlbumPage() {
-    const formRef = useRef();
+    const formRef = useRef<HTMLFormElement>(null);
 
-    const token = sessionStorage.getItem("authorization").split(' ')[1];
-    const decodedUser = jwt_decode(token);
+    const token: string | null = sessionStorage.getItem("authorization")!.split(' ')[1];
+    const decodedUser: UserProfile = jwt_decode(token);
 
     // eslint-disable-next-line
-    const [user, setUser] = useState(decodedUser);
+    const [user, setUser] = useState<UserProfile>(decodedUser);
     const [image, setImage] = useState({
-        value: "",
+        value: [],
         required: false
     })
     const [albumTitle, setAlbumTitle] = useState({
@@ -46,8 +48,9 @@ function AddAlbumPage() {
     });
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const handleOnChange = (event) => {
-        const { name, value, files } = event.target;
+    const handleOnChange = (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLTextAreaElement>) => {
+        const { name, value } = event.target;
+        const files: any = (event.target as HTMLInputElement).files
         switch (name) {
             case "image":
                 setImage({
@@ -75,7 +78,7 @@ function AddAlbumPage() {
                 break;
             case "numTracks":
                 setNumTracks({
-                    value: parseInt(value),
+                    value,
                     required: false
                 })
                 break;
@@ -87,7 +90,7 @@ function AddAlbumPage() {
                 break;
             case "numCopies":
                 setNumCopies({
-                    value: parseInt(value),
+                    value,
                     required: false
                 })
                 break;
@@ -102,7 +105,7 @@ function AddAlbumPage() {
         }
     }
 
-    const handleOnSubmit = (event) => {
+    const handleOnSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (!image.value) {
             setImage({
@@ -156,7 +159,7 @@ function AddAlbumPage() {
             return;
         }
         const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
-        const fd = new FormData(formRef.current);
+        const fd = new FormData(formRef.current!);
         axios
             .post(`${serverURL}/collection/add-new-album`, fd, {
                 headers: {
@@ -265,7 +268,7 @@ function AddAlbumPage() {
                     value={numTracks.value}
                     onChange={(event) => handleOnChange(event)}
                     min={1}
-                    placeholder={1}
+                    placeholder="1"
                     className={`add-album-form__input add-album-form__input--number ${numTracks.required ? "add-album-form__input--invalid" : ""}`}
                     />
                 </div>
@@ -303,7 +306,8 @@ function AddAlbumPage() {
                     value={numCopies.value}
                     onChange={(event) => handleOnChange(event)}
                     className={`add-album-form__input add-album-form__input--number ${numCopies.required ? "add-album-form__input--invalid" : ""}`}
-                    placeholder={0}
+                    min={1}
+                    placeholder="0"
                     />
                 </div>
                 <div className="add-album-form__group">

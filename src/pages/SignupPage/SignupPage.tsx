@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { Redirect, Link } from "react-router-dom";
 import './SignupPage.scss';
 import album from '../../assets/icons/album-white-36.svg';
@@ -31,7 +31,7 @@ function SignUpPage() {
     })
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const handleOnChange = (event) => {
+    const handleOnChange = (event: { target: { name: any; value: any; }; }) => {
         const { name, value } = event.target;
         switch (name) {
             case "firstName":
@@ -69,7 +69,7 @@ function SignUpPage() {
         }
     }
 
-    const handleOnSubmit = (event) => {
+    const handleOnSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (!firstName.value) {
             setFirstName({
@@ -114,10 +114,10 @@ function SignUpPage() {
         const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
             .post(`${serverURL}/signup`, {
-                firstName: event.target.firstName.value,
-                lastName: event.target.lastName.value,
-                username: event.target.username.value,
-                password: event.target.password.value
+                firstName: firstName.value,
+                lastName: lastName.value,
+                username: username.value,
+                password: password.value
             })
             .then(() => {
                 alert("User successfully signed up");

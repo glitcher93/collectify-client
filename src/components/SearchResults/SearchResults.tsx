@@ -1,12 +1,13 @@
 import SearchResultForm from '../SearchResultForm/SearchResultForm';
 import './SearchResults.scss';
+import { SearchReturn } from '../../utils/interfaces';
 
-function SearchResults(props) {
+function SearchResults(props: { searchResults: SearchReturn[] }) {
 
     return (
         <div className="search-results__container">
             <ul className="search-results__list">
-                {props.searchResults.map((searchResult, i) => {
+                {props.searchResults.map((searchResult: SearchReturn, i: number) => {
                     return (
                         <li
                         className="search-result"

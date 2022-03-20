@@ -3,16 +3,17 @@ import { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import './EditWishlistItemPage.scss';
 import arrow from '../../assets/icons/arrow-back-black.svg';
+import { Album } from '../../utils/interfaces';
 
-function EditWishlistItemPage(props) {
+function EditWishlistItemPage(props: { match: { params: { itemId: any; }; }; }) {
 
-    const [wishlistItem, setWishlistItem] = useState([]);
+    const [wishlistItem, setWishlistItem] = useState<Album>({} as Album);
     const [medium, setMedium] = useState({
         value: "",
         required: false
     });
     const [numCopies, setNumCopies] = useState({
-        value: parseInt(0),
+        value: 0,
         required: false
     });
     const [description, setDescription] = useState({
@@ -22,7 +23,7 @@ function EditWishlistItemPage(props) {
     const [isSubmitted, setIsSubmitted] = useState(false)
 
     useEffect(() => {
-        const token = sessionStorage.getItem("authorization").split(' ')[1];
+        const token = sessionStorage.getItem("authorization")!.split(' ')[1];
         const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
             .get(`${serverURL}/wishlist/${props.match.params.itemId}`, {
@@ -49,7 +50,7 @@ function EditWishlistItemPage(props) {
             // eslint-disable-next-line
     }, [])
 
-    const handleOnChange = (event) => {
+    const handleOnChange = (event: { target: { name: any; value: any; }; }) => {
         const { name, value } = event.target;
         switch (name) {
             case "medium":
@@ -75,7 +76,7 @@ function EditWishlistItemPage(props) {
         }
     }
 
-    const handleOnSubmit = (event) => {
+    const handleOnSubmit = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
         if (!medium.value) {
             setMedium({
@@ -98,7 +99,7 @@ function EditWishlistItemPage(props) {
         if (!medium.value || !numCopies.value || !description.value ) {
             return;
         }
-        const token = sessionStorage.getItem("authorization").split(' ')[1];
+        const token = sessionStorage.getItem("authorization")!.split(' ')[1];
         axios
             .put(`http://localhost:8080/wishlist/${props.match.params.itemId}/update`, {
                 medium: medium.value,

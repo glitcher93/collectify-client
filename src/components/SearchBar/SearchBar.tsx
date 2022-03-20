@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import './SearchBar.scss'
 
-function SearchBar(props) {
+function SearchBar(props: { onSearch: (arg0: string) => void; }) {
     const [term, setTerm] = useState("");
 
-    const handleTermChange = event => {
+    const handleTermChange = (event: { target: { value: SetStateAction<string>; }; }) => {
         setTerm(event.target.value);
     }
 

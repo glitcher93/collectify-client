@@ -1,16 +1,17 @@
 import { Link } from 'react-router-dom';
-import './Album.scss';
+import './AlbumItem.scss';
 import deleteicon from '../../assets/icons/delete-white.svg';
 import edit from '../../assets/icons/edit-black.svg';
 import albumicon from '../../assets/icons/album-black-24.svg';
 import add from '../../assets/icons/add-black.svg';
+import { AlbumProps } from '../../utils/interfaces';
 
-function Album(props) {
-    const renderButton = () => {
+function AlbumItem(props: AlbumProps) {
+    const renderButton = ()  => {
         if (props.handleOnClickCollection) {
             return <button 
             className="album__button"
-            onClick={() => props.handleOnClickCollection(props.album, props.id)}
+            onClick={props.album ? () => props.handleOnClickCollection?.(props.album!, props.id) : undefined}
             title="Add to collection"
             >
                     <img 
@@ -105,4 +106,4 @@ function Album(props) {
     )
 }
 
-export default Album;
+export default AlbumItem;

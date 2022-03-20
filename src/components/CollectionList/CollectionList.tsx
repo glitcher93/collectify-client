@@ -1,15 +1,21 @@
 import './CollectionList.scss';
-import Album from '../Album';
+import AlbumItem from '../AlbumItem';
+import { Album } from '../../utils/interfaces';
 
-function CollectionList(props) {
+interface Collection {
+    collection: Album[]
+    handleOnClickDelete: (id: number) => void
+}
+
+function CollectionList(props: Collection) {
 
     return (
         <div className="collection__list-container">
             {(props.collection.length === 0) ? 
                 <p className="collection__empty-list">Nothing to see here...yet</p> :
                 <ul className="collection__list">
-                    {props.collection.map((album, i) => {
-                        return <Album 
+                    {props.collection.map((album: Album, i: number) => {
+                        return <AlbumItem 
                                 key={album.id}
                                 id={album.id}
                                 index={i}

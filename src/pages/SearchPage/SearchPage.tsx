@@ -8,10 +8,10 @@ function SearchPage() {
 
     const [searchResults, setSearchResults] = useState([]);
     
-    const search = (term) => {
+    const search = (term: string) => {
         Spotify
             .search(term)
-            .then(searchResults => setSearchResults(searchResults))
+            .then((searchResults) => setSearchResults(searchResults))
             .catch(err => console.log(err))
     }
 

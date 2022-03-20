@@ -3,16 +3,18 @@ import { useState, useEffect } from 'react';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 import WishList from '../../components/WishList/WishList';
+import { Album } from '../../utils/interfaces';
+import { UserProfile } from '../../utils/interfaces';
 
 function WishListPage() {
 
-    const [wishlist, setWishlist] = useState([]);
-    const [user, setUser] = useState(null)
+    const [wishlist, setWishlist] = useState<Album[]>([]);
+    const [user, setUser] = useState<UserProfile>({} as UserProfile)
 
     useEffect(() => {
         if (sessionStorage.getItem("authorization")) {
-        const token = sessionStorage.getItem("authorization").split(" ")[1];
-        const decodedUser = jwt_decode(token);
+        const token = sessionStorage.getItem("authorization")!.split(" ")[1];
+        const decodedUser: UserProfile = jwt_decode(token);
         setUser(decodedUser);
         const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
@@ -27,8 +29,8 @@ function WishListPage() {
         }
     }, [])
 
-    const handleOnClickDelete = (id) => {
-        const token = sessionStorage.getItem("authorization").split(" ")[1];
+    const handleOnClickDelete = (id: number) => {
+        const token = sessionStorage.getItem("authorization")!.split(" ")[1];
         const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
             .delete(`${serverURL}/wishlist/${id}`, {
@@ -51,8 +53,8 @@ function WishListPage() {
             .catch(err => console.log(err));
     }
 
-    const handleOnClickCollection = (album, id) => {
-        const token = sessionStorage.getItem("authorization").split(" ")[1];
+    const handleOnClickCollection = (album: Album, id: number) => {
+        const token = sessionStorage.getItem("authorization")!.split(" ")[1];
         const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
             .post(`${serverURL}/collection`, {

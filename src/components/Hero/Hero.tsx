@@ -1,14 +1,19 @@
 import './Hero.scss';
 import { useState } from 'react';
 import jwt_decode from 'jwt-decode';
+import { UserProfile } from '../../utils/interfaces';
+import { useEffect } from 'react';
+
 
 function Hero() {
 
-    const token = sessionStorage.getItem("authorization").split(' ')[1];
-    const decodedUser = jwt_decode(token);
+    const [user, setUser] = useState<UserProfile>({} as UserProfile)
 
-    // eslint-disable-next-line
-    const [user, setUser] = useState(decodedUser)
+    useEffect(() => {
+        const token: string = sessionStorage.getItem("authorization")!.split(' ')[1];
+        const decodedUser: UserProfile = jwt_decode(token);
+        setUser(decodedUser);
+    }, [])   
 
     return (
         <section className="hero">

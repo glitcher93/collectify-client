@@ -1,14 +1,21 @@
 import './WishList.scss';
-import Album from '../Album';
+import AlbumItem from '../AlbumItem';
+import { Album } from '../../utils/interfaces';
 
-function WishList(props) {
+interface WishListProps {
+    wishlist: Album[]
+    handleOnClickDelete: (id: number) => void
+    handleOnClickCollection?: (album: Album, id: number) => void
+}
+
+function WishList(props: WishListProps) {
     return (
         <div className="wishlist__list-container">
             {(props.wishlist.length) === 0 ? 
             <p className="wishlist__empty-list">Nothing to see here...yet</p> :
             <ul className="wishlist__list">
-                {props.wishlist.map((album, i) => {
-                    return <Album 
+                {props.wishlist.map((album: Album, i: number) => {
+                    return <AlbumItem 
                             key={album.id}
                             id={album.id}
                             album={album}
