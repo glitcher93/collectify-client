@@ -9,7 +9,7 @@ import { UserProfile } from '../../utils/interfaces';
 function AddAlbumPage() {
     const formRef = useRef<HTMLFormElement>(null);
 
-    const token: string | null = sessionStorage.getItem("authorization")!.split(' ')[1];
+    const token= sessionStorage.getItem("authorization")!.split(' ')[1];
     const decodedUser: UserProfile = jwt_decode(token);
 
     // eslint-disable-next-line

@@ -11,7 +11,7 @@ function CollectionPage() {
     
 
     useEffect(() => {
-        const token = sessionStorage.getItem("authorization")!.split(" ")[1] as string | null;
+        const token = sessionStorage.getItem("authorization")!.split(" ")[1];
         if (typeof token === "string") {
         const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
@@ -28,7 +28,7 @@ function CollectionPage() {
     }, [])
 
     const handleOnClickDelete = (id: number) => {
-        const token = sessionStorage.getItem("authorization")!.split(" ")[1] as string | null;
+        const token = sessionStorage.getItem("authorization")!.split(" ")[1];
         const serverURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8080';
         axios
             .delete(`${serverURL}/collection/${id}`, {
